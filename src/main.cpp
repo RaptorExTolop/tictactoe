@@ -64,11 +64,6 @@ int runGame(vector<vector<char>> gameBoard) {
             cout << "quits the game" << endl;
             running = false;
         }
-        
-        // if (!isalnum(input[0]) {
-        //     cout << "please enter a coordinate location";
-        //     continue;
-        // }
     }
     return 0;
 }
