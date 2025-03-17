@@ -2,33 +2,23 @@
 #include <vector>
 
 using namespace std;
-void makeGameGrid();
+
 int changeGameGrid(vector<int> v2, bool isPlayerOne);
+string input(string msg);
 void printGameGrid();
+void makeGameGrid();
+int runGame();
+
 
 vector<vector<char>> game;
 
 int main() {
     makeGameGrid();
-    printGameGrid();
-    int err = changeGameGrid(vector<int> {1, 1}, true);
+    int err = runGame();
     if (err != 0) {
-        cerr << "DAMN YOU SUCK YOU STINKY" << endl;
-        return err;
+        cerr << "There Has Been A Fatal Error!" << endl;
     }
-    printGameGrid();
-    err = changeGameGrid(vector<int> {1, 2}, false);
-    if (err != 0) {
-        cerr << "DAMN YOU SUCK YOU STINKY" << endl;
-        return err;
-    }
-    printGameGrid();
-    err = changeGameGrid(vector<int> {1, 3}, false);
-    if (err != 0) {
-        cerr << "DAMN YOU SUCK YOU STINKY" << endl;
-        return err;
-    }
-    return 0;
+    return err;
 }
 
 void makeGameGrid() {
@@ -72,3 +62,31 @@ void printGameGrid() {
         cout << endl;
     }
 }
+
+string input(string msg) {
+    cout << msg;
+    string out;
+    cin >> out;
+    return out;
+}
+
+int runGame() {
+    
+    cout << "Hello! Welcome to my TickTackToe game!" << endl << 
+    "To play the game, each player just has to enter a coordinate location" << endl <<
+    "For example, (1,1) would be the top left corner, and (3, 3) would be the bottom right corner." << endl <<
+    "If you want to quit the game, just type 'q'" << endl;
+
+    // gets player's name
+    string playerOneName;
+    string playerTwoName;
+
+    playerOneName = input("What is your name Player One? ");
+    playerTwoName = input("What is your name Player Two? ");
+
+    cout << "Hello, " << playerOneName << " & " << playerTwoName << endl;
+
+
+    return 0;
+}
+
