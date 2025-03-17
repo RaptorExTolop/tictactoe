@@ -44,7 +44,9 @@ int runGame() {
     bool playerOneTurn;
     playerOneTurn = true;
     while (running) {
+        cout << "Current Grid: " << endl;
         printGameGrid();
+        cout << endl;
         string currentPlayerName;
         char ch;
         if (playerOneTurn) {
@@ -57,7 +59,11 @@ int runGame() {
 
         string coords = input(currentPlayerName + " input coords: ");
         vector<int> v = convertToVector(coords);
-        if (v == vector<int> {-1, -1}) {}
+        if (v == vector<int> {-1, -1}) {
+            cerr << "There has been a fatal error! Incorrect coordinates!" << endl;
+            return 4;
+        }
+        running = false;
     }
 
     return 0;
@@ -115,8 +121,23 @@ string input(string msg) {
 }
 
 vector<int> convertToVector(string input) {
-    if (!input[0] == '(' || input[input.length()-1] == ')') {
+    if (!(input[0] == '(' || input[input.length() - 1] == ')')) {
         return vector<int> {-1, -1};
     }
+    int index = 0;
+    if (input[index] != '(') {
+        return vector<int> {-1, -1};
+    }
+    index++;
+    if (!isalnum(input[index])) {
+        return vector<int> {-1, -1};
+    }
+    string buffer;
+    buffer += input[index];
+    index++;
+    while (isalnum(input[index])) {
+        buffer += input[index];
+    }   
+
     return vector<int> {0, 0};
 }
