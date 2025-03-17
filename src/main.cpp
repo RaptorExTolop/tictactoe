@@ -4,6 +4,7 @@
 using namespace std;
 
 int changeGameGrid(vector<int> v2, bool isPlayerOne);
+vector<int> convertToVector(string input);
 string input(string msg);
 void printGameGrid();
 void makeGameGrid();
@@ -19,6 +20,47 @@ int main() {
         cerr << "There Has Been A Fatal Error!" << endl;
     }
     return err;
+}
+
+int runGame() {
+    // begining msg
+    cout << "Hello! Welcome to my TickTackToe game!" << endl << 
+    "To play the game, each player just has to enter a coordinate location" << endl <<
+    "For example, (1,1) would be the top left corner, and (3, 3) would be the bottom right corner." << endl <<
+    "If you want to quit the game, just type 'q'" << endl;
+
+    // gets player's name
+    string playerOneName;
+    string playerTwoName;
+
+    playerOneName = input("What is your name Player One? ");
+    playerTwoName = input("What is your name Player Two? ");
+
+    cout << "Hello, " << playerOneName << " & " << playerTwoName << endl <<
+    "Starting the game!" << endl;
+
+    bool running;
+    running = true;
+    bool playerOneTurn;
+    playerOneTurn = true;
+    while (running) {
+        printGameGrid();
+        string currentPlayerName;
+        char ch;
+        if (playerOneTurn) {
+            currentPlayerName = playerOneName;
+            ch = 'X';
+        } else {
+            currentPlayerName = playerTwoName;
+            ch = 'O';
+        }
+
+        string coords = input(currentPlayerName + " input coords: ");
+        vector<int> v = convertToVector(coords);
+        if (v == vector<int> {-1, -1}) {}
+    }
+
+    return 0;
 }
 
 void makeGameGrid() {
@@ -56,11 +98,13 @@ int changeGameGrid(vector<int> v2, bool isPlayerOne) {
 
 void printGameGrid() {
     for (int i = 0; i < 3; i++) {
+        cout << " -  -  - " << endl;
         for (int j = 0; j < 3; j++) {
-            cout << game[i][j];
+            cout << "|" << game[i][j] << "|";
         }
         cout << endl;
     }
+    cout << " -  -  - ";
 }
 
 string input(string msg) {
@@ -70,23 +114,9 @@ string input(string msg) {
     return out;
 }
 
-int runGame() {
-    
-    cout << "Hello! Welcome to my TickTackToe game!" << endl << 
-    "To play the game, each player just has to enter a coordinate location" << endl <<
-    "For example, (1,1) would be the top left corner, and (3, 3) would be the bottom right corner." << endl <<
-    "If you want to quit the game, just type 'q'" << endl;
-
-    // gets player's name
-    string playerOneName;
-    string playerTwoName;
-
-    playerOneName = input("What is your name Player One? ");
-    playerTwoName = input("What is your name Player Two? ");
-
-    cout << "Hello, " << playerOneName << " & " << playerTwoName << endl;
-
-
-    return 0;
+vector<int> convertToVector(string input) {
+    if (!input[0] == '(' || input[input.length()-1] == ')') {
+        return vector<int> {-1, -1};
+    }
+    return vector<int> {0, 0};
 }
-
